@@ -139,7 +139,7 @@ module Trello
       client.put("/boards/#{self.id}/members/#{member}", { type: type })
     end
 	  
-    def add_new_member(type = :normal, email)
+    def add_new_member(email, type = :normal)
       client.put("/boards/#{self.id}/members", { type: type, email: email })
     end
 
