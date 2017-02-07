@@ -50,6 +50,16 @@ module Trello
         data.merge!('prefs' => fields[:prefs]) if fields[:prefs]
         client.create(:board, data)
       end
+      
+      def clone(fields)
+        data = {
+          'name'  => fields[:name],
+          'idOrganization' => fields[:organization_id],
+          'idBoardSource' => fields[:board_source_id],
+          'keepFromSource' => fields[:keep_source],
+        }
+        client.create(:board, data)
+	    end
 
       # @return [Array<Trello::Board>] all boards for the current user
       def all
