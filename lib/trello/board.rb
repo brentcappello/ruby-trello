@@ -138,6 +138,10 @@ module Trello
     def add_member(member, type = :normal)
       client.put("/boards/#{self.id}/members/#{member}", { type: type })
     end
+	  
+    def add_new_member(member, type = :normal, email)
+      client.put("/boards/#{self.id}/members", { type: type, email: email })
+    end
 
     # Remove a member of this Board.
     def remove_member(member)
