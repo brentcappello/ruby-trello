@@ -136,12 +136,12 @@ module Trello
     # Add a member to this Board.
     #    type => [ :admin, :normal, :observer ]
     def add_member(member, type = :normal)
-      client.put("/boards/#{self.id}/members/#{member.id}", { type: type })
+      client.put("/boards/#{self.id}/members/#{member}", { type: type })
     end
 
     # Remove a member of this Board.
     def remove_member(member)
-      client.delete("/boards/#{self.id}/members/#{member.id}")
+      client.delete("/boards/#{self.id}/members/#{member}")
     end
 
     # Return all the cards on this board.
