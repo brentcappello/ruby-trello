@@ -55,8 +55,7 @@ module Trello
         data = {
           'name'  => fields[:name],
           'idOrganization' => fields[:organization_id],
-          'idBoardSource' => fields[:board_source_id],
-          'keepFromSource' => fields[:keep_source],
+          'idBoardSource' => fields[:board_source_id]
         }
         client.create(:board, data)
 	    end
@@ -75,7 +74,6 @@ module Trello
       fields.merge!(idOrganization: organization_id) if organization_id
       fields.merge!(flat_prefs)
       fields.merge!(idBoardSource: board_source_id) if board_source_id
-      fields.merge!(keepFromSource: keep_source) if keep_source
 
       from_response(client.post("/boards", fields))
     end
