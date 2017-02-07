@@ -74,6 +74,8 @@ module Trello
       fields.merge!(desc: description) if description
       fields.merge!(idOrganization: organization_id) if organization_id
       fields.merge!(flat_prefs)
+      fields.merge!(idBoardSource: board_source_id) if board_source_id
+      fields.merge!(keepFromSource: keep_source) if keep_source
 
       from_response(client.post("/boards", fields))
     end
@@ -100,6 +102,7 @@ module Trello
       attributes[:id]              = fields['id'] || fields[:id]                          if fields['id']   || fields[:id]
       attributes[:name]            = fields['name'] || fields[:name]                      if fields['name'] || fields[:name]
       attributes[:description]     = fields['desc'] || fields[:desc]                      if fields['desc'] || fields[:desc]
+      attributes[:board_source_id] = fields['idBoardSource'] || fields['board_source_id'] if fields['idBoardSource'] || fields['board_source_id']
       attributes[:closed]          = fields['closed']                                     if fields.has_key?('closed')
       attributes[:closed]          = fields[:closed]                                      if fields.has_key?(:closed)
       attributes[:starred]         = fields['starred']                                    if fields.has_key?('starred')
